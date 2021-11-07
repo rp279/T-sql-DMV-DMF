@@ -1,4 +1,4 @@
-Alter procedure usp_AutoUpadeteStats
+Create procedure usp_AutoUpadeteStats
 (@IntObjectid int) 
 as
    begin 
