@@ -1,4 +1,4 @@
-drop table TblBackupRestoreEmp;
+drop table if exists TblBackupRestoreEmp;
 
 
 BACKUP DATABASE [AdventureWorks2019] 
@@ -178,4 +178,6 @@ delete from TblBackupRestoreEmp;
 
 
 ----------------Restore Database for RTO=0.5 sec, RPO=No data loss--------------------
+
+the changes I have made to update the database backup and restore schedule fromthe origin
 
