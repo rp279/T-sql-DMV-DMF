@@ -181,3 +181,4 @@ delete from TblBackupRestoreEmp;
 
 the changes I have made to update the database backup and restore schedule fromthe origin
 
+-----How to create trigger to avoid logical disster--
