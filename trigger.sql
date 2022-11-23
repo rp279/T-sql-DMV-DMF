@@ -4,7 +4,8 @@ SELECT name,
        type_desc,
        is_disabled
 FROM sys.triggers;
- 
+--Name of the object should be in the display too.
+
 DISABLE TRIGGER TR_Schema_Change ON DATABASE;
 DISABLE TRIGGER ALL ON dbo.Person;
  
