@@ -13,7 +13,7 @@ if @backupSetId is null begin raiserror(N'Verify failed. Backup information for 
 RESTORE VERIFYONLY FROM  DISK = N'C:\rahul_1 backup\AdventureWorks_FullBackup_17 52 _PM.bak' WITH  FILE = @backupSetId,  NOUNLOAD,  NOREWIND
 GO;
 /*
-10 percent processed.
+I dont know
 20 percent processed.
 30 percent processed.
 40 percent processed.

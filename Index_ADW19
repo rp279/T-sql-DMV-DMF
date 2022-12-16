@@ -1,0 +1,16 @@
+USE [AdventureWorks2019]
+GO
+Drop index if exists [AK_Employee_LoginID] on [HumanResources].[Employee]
+SET ANSI_PADDING ON
+GO
+
+/****** Object:  Index [AK_Employee_LoginID]    Script Date: 15/12/2022 12:08:00 PM ******/
+CREATE UNIQUE NONCLUSTERED INDEX [AK_Employee_LoginID] ON [HumanResources].[Employee]
+(
+	[LoginID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+
+
+
+

@@ -1,0 +1,57 @@
+use AdventureWorks2019;
+go
+---Create the store procedure for restore schedule after logical disater
+create procedure Usp_DatabaseRestore 
+(@DBname as varchar (1000),
+@BackupFilepath as nvarchar (max)
+)
+with encryption 
+as 
+begin
+      declare @Ermessage as varchar (max)
+	  declare @Location as varchar (max)
+	  declare @Type as char(1) 
+	  set  @Ermessage= ' Verify failed. Backup information for database' + @DBname + 'not found.'
+	  set @Location= @Filepath + @filename
+
+
+	  SELECT 
+      [name]
+      ,[description]
+      ,[user_name]
+      ,[database_creation_date]
+      ,[backup_start_date]
+      ,[backup_finish_date]
+      ,[type]
+      ,[database_name]
+      ,[server_name]
+      ,[machine_name]
+      ,[recovery_model]
+      ,[is_snapshot]
+      ,[is_readonly]
+      ,[is_single_user]
+      ,[has_backup_checksums]
+      ,[begins_log_chain]
+      ,[is_copy_only]
+      ,[encryptor_thumbprint]
+      ,[encryptor_type]
+  FROM [msdb].[dbo].[backupset]
+
+
+	  if (@Type='D')
+	  begin
+BACKUP DATABASE [@DBname] TO 
+DISK = @Varlocation 
+WITH NOFORMAT, INIT,  
+NAME = @DBname + '-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10
+
+declare @backupSetId as int
+select @backupSetId = position from msdb..backupset where database_name=@DBname
+and backup_set_id=(select max(backup_set_id) from msdb..backupset where database_name=@DBname )
+if @backupSetId is null
+begin raiserror(@Ermessage , 16, 1) 
+end
+RESTORE VERIFYONLY FROM 
+DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQL_DEC2022\MSSQL\Backup\AdventureWorks2019.bak'
+WITH  FILE = @backupSetId,  NOUNLOAD,  NOREWIND
+end
