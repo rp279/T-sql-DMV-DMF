@@ -31,7 +31,6 @@ begin
       ,[is_readonly]
       ,[is_single_user]
       ,[has_backup_checksums]
-      ,[is_damaged]
       ,[begins_log_chain]
       ,[is_copy_only]
       ,[encryptor_thumbprint]
