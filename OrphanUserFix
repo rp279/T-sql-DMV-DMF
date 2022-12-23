@@ -1,0 +1,16 @@
+-- how to find the orphan user 
+-------------------------------detect orphaned users--------------------------------------
+select * from sys.server_principals --server login and Sid info
+select * from sys.database_principals
+ 
+exec sp_change_users_login @Action='Report';-- find the report of the orphan user to database
+--Fix orphaned users : Method-1
+	--1.Create a new login if you want diff login to user
+	CREATE LOGIN [KiranSheikh] WITH PASSWORD=N'asdf'  --0x48651D5C39A0134C9A31B123DD160751
+	--2.Fix the user SID value 
+	exec sp_change_users_login @Action='update_one', @UserNamePattern='KiranSheikh',   @LoginName='KiranSheikh';
+	exec sp_change_users_login @Action='Report';
+
+--Fix orphaned users : Method-2 this will give same user name to login name
+exec sp_change_users_login @Action='Auto_Fix', @UserNamePattern='PrideSuh', @LoginName=NULL, @password='asdf';
+exec sp_change_users_login @Action='Report'; 
