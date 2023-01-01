@@ -5,8 +5,8 @@ as
        declare @LastUpdatedate  as date
 	   declare @StatName as varchar (100)
 	   declare @strmessage as varchar (2000)
-	   declare @int as int
-	set @int = @IntObjectid   
+	   declare @intID as int
+	set @intID = @IntObjectid   
 select @LastUpdatedate=
 stats_date ([object_id], [stats_id])
 from sys.stats
@@ -24,7 +24,7 @@ where [object_id]=@IntObjectid;
 		 end 
 
 		 else 
-		  set  @strmessage= 'All the stats of' + object_name (@int)  +' is updated' 
+		  set  @strmessage= 'All the stats of' + object_name (@intID)  +' is updated' 
 		    
 		    raiserror (@strmessage, 0,1) 
 
