@@ -1,4 +1,4 @@
--- This is the stor pro to autoupdate the stats ofthe object whose stats are not been updateed since last 30 days
+
 Create procedure usp_AutoUpadeteStats
 (@IntObjectid int) 
 as
@@ -35,3 +35,5 @@ where [object_id]=@IntObjectid;
 select [object_id],stats_date ([object_id], [stats_id])  as 'Date'
 from sys.stats
 order by [Date] desc 
+--change the logic to automate the stats update rather then calling the store pro for every objects in the database--
+--
