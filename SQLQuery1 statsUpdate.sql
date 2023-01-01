@@ -1,3 +1,4 @@
+-- This is the stor pro to autoupdate the stats ofthe object whose stats are not been updateed since last 30 days
 Create procedure usp_AutoUpadeteStats
 (@IntObjectid int) 
 as
